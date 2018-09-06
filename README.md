@@ -96,11 +96,11 @@ First release including DVAE, DVAE++, and DVAE#. With both PCD and population an
 
 if you use this code in your research, please cite us:
 ```
-@article{vahdat2018dvae,
-  title={DVAE\#: Discrete Variational Autoencoders with Relaxed {B}oltzmann Priors},
-  author={Vahdat, Arash and Andriyash, Evgeny and Macready, William G},
-  journal={arXiv preprint arXiv:1805.07445},
-  year={2018}
+@inproceedings{vahdat2018dvae,
+  title = {DVAE\#: Discrete Variational Autoencoders with Relaxed {B}oltzmann Priors},
+  author = {Vahdat, Arash and Andriyash, Evgeny and Macready, William G},
+  booktitle = {Neural Information Processing Systems (NIPS)},
+  year = {2018}
 }
 ```
 
@@ -112,4 +112,4 @@ if you use this code in your research, please cite us:
 [2] DVAE++: Discrete Variational Autoencoders with Overlapping Transformations by Arash Vahdat, William G. Macready, 
 Zhengbing Bian, Amir Khoshaman, Evgeny Andriyash, ICML 2018, [paper](https://arxiv.org/abs/1802.04920). <br/>
 [3] DVAE#: Discrete Variational Autoencoders with Relaxed Boltzmann Priors by Arash Vahdat*, Evgeny Andriyash*, 
-William G. Macready, arXiv 2018, [paper](https://arxiv.org/abs/1805.07445).
+William G. Macready, NIPS 2018, [paper](https://arxiv.org/abs/1805.07445).
