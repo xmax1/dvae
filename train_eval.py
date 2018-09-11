@@ -110,6 +110,7 @@ def run_training(vae, cont_train, config_train, log_dir):
     # merge all summary for training graph
     train_summary_op = tf.summary.merge_all()
 
+
     # define a parallel graph for evaluation. Enable parameter sharing by setting is_training to False.
     _, neg_elbo_eval, _, _, log_iw_eval = vae.neg_elbo(input_placeholder, is_training=False)
 
@@ -143,7 +144,7 @@ def run_training(vae, cont_train, config_train, log_dir):
     # Instantiate a SummaryWriter to output summaries and the Graph.
     # Create train/validation/test summary directories
     summary_writer = tf.summary.FileWriter(log_dir)
-
+    summary_writer.add_graph(sess.graph)
     # And then after everything is built, start the training loop.
     duration = 0.0
     best_val_neg_ll = np.finfo(float).max

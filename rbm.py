@@ -42,11 +42,11 @@ class RBM(DistUtil):
         self.name = name
 
         # bias on the left side
-        self.b1 = tf.Variable(tf.zeros(shape=[self.num_var1, 1], dtype=tf.float32, name='bias1'))
+        self.b1 = tf.Variable(tf.zeros(shape=[self.num_var1, 1], dtype=tf.float32), name='bias1')
         # bias on the right side
-        self.b2 = tf.Variable(tf.zeros(shape=[self.num_var2, 1], dtype=tf.float32, name='bias2'))
+        self.b2 = tf.Variable(tf.zeros(shape=[self.num_var2, 1], dtype=tf.float32), name='bias2')
         # pairwise weight
-        self.w = tf.Variable(tf.zeros(shape=[self.num_var1, self.num_var2], dtype=tf.float32, name='pairwise'))
+        self.w = tf.Variable(tf.zeros(shape=[self.num_var1, self.num_var2], dtype=tf.float32), name='pairwise')
 
         # sampling options
         self.num_samples = num_samples

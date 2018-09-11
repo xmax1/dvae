@@ -34,9 +34,10 @@ class SimpleDecoder:
         weight_decay_recon = config_recon['weight_decay_dec']
         name = config_recon['name']
         use_batch_norm = config_recon['batch_norm']
-        self.net = FeedForwardNetwork(
-            num_input=num_input, num_hiddens=num_det_hiddens, num_output=num_output, name='%s_output' % name,
-            weight_decay_coeff=weight_decay_recon, output_split=self.output_dist_util.num_param, use_batch_norm=use_batch_norm)
+        with tf.name_scope("decoder_network"):
+            self.net = FeedForwardNetwork(
+                num_input=num_input, num_hiddens=num_det_hiddens, num_output=num_output, name='%s_output' % name,
+                weight_decay_coeff=weight_decay_recon, output_split=self.output_dist_util.num_param, use_batch_norm=use_batch_norm)
 
     def generator(self, prior_samples):
         """ This function generates samples using ancestral sampling from decoder. It accepts
@@ -104,10 +105,11 @@ class SimpleEncoder:
             num_det_hiddens = [self.num_det_units] * self.num_det_layers
             num_input = self.num_input + i * self.num_latent_units
             num_output = self.num_latent_units * self.dist_util.num_param
-            network = FeedForwardNetwork(
-                num_input=num_input, num_hiddens=num_det_hiddens, num_output=num_output, name='%s_enc_%d' % (self.name, i),
-                weight_decay_coeff=self.weight_decay, output_split=self.dist_util.num_param, use_batch_norm=self.use_batch_norm)
-            self.nets.append(network)
+            with tf.name_scope("latent_layer_%02i" % (i+1)):
+                network = FeedForwardNetwork(
+                    num_input=num_input, num_hiddens=num_det_hiddens, num_output=num_output, name='%s_enc_%d' % (self.name, i),
+                    weight_decay_coeff=self.weight_decay, output_split=self.dist_util.num_param, use_batch_norm=self.use_batch_norm)
+                self.nets.append(network)
 
     def hierarchical_posterior(self, input, is_training):
         """ This function defines a hierarchical approximate posterior distribution. The length of the output is equal 
